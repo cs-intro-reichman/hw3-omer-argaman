@@ -13,12 +13,12 @@ public class LoanCalc {
 		double rate = Double.parseDouble(args[1]);
 		int n = Integer.parseInt(args[2]);
 		System.out.println("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
-
+		System.out.println();
 		// Computes the periodical payment using brute force search
 		System.out.print("Periodical payment, using brute force: ");
 		System.out.println((int) bruteForceSolver(loan, rate, n, epsilon));
 		System.out.println("number of iterations: " + iterationCounter);
-
+		System.out.println();
 		// Computes the periodical payment using bisection search
 		System.out.print("Periodical payment, using bi-section search: ");
 		System.out.println((int) bisectionSolver(loan, rate, n, epsilon));
@@ -55,9 +55,6 @@ public class LoanCalc {
 			} else {
 				break; 
 			}
-			if (iterationCounter > 2000000) {
-				throw new RuntimeException("Brute force solver failed to converge after 2,000,000 iterations.");
-			}
 		}
 		return payment;
     }
@@ -85,9 +82,7 @@ public class LoanCalc {
                 low = payment;
             }
 			payment = (low + high)/2;
-			if (iterationCounter > 2000000) {
-				throw new RuntimeException("Brute force solver failed to converge after 2,000,000 iterations.");
-			}
+
 
 		}
 		return payment;
